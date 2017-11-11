@@ -17,14 +17,15 @@ def get_product_opinion(product_number):
 	mystr = fp.decode("utf8")
 	soup = BeautifulSoup(mystr, 'html.parser')
 
-
-	paragraph_nickname = soup.find("div", class_="reviewer-name-line")
-	nicknames = paragraph_nickname.string
-	print(nicknames)
-
-	paragraph_recommend = soup.find("em", class_="product-recommended")
-	recommend = paragraph_recommend.string
-	print(recommend)
+	for paragraph_nickname in soup.find_all("div", class_="reviewer-name-line"):
+		nicknames = paragraph_nickname.string
+		print(nicknames)
+		for	paragraph_recommend in soup.find_all("em", class_="product-recommended"):
+			recommend = paragraph_recommend.string
+			print(recommend)
+		for	paragraph_not_recommend in soup.find_all("em", class_="product-not-recommended"):
+			not_recommend = paragraph_not_recommend.string
+			print(not_recommend)
 
 
 
